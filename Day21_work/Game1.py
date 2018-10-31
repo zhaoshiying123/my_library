@@ -18,6 +18,7 @@ Tom = Cat(10000)
 print(Tom.position)
 
 list1 = []
+
 for i in range(10):
     Jerry = Mouse(10)
     pos = [random.randint(1, 10), random.randint(1, 10)]
@@ -28,43 +29,36 @@ for i in range(10):
 print(list1)
 
 def border(p0,p1):
-    if p0==11:
-        p0 = 1
-    if p0==12:
-        p0 = 2
-    if p0==0:
-        p0 = 10
-    if p0==-1:
-        p0 = 9
-
-    if p1==11:
-        p1 = 1
-    if p1==12:
-        p1 = 2
-    if p1==0:
-        p1 = 10
-    if p1==-1:
-        p1 = 9
+    if p0 > 10:
+        p0 -= 10
+    if p0 < 1:
+        p0 += 10
+    if p1 > 10:
+        p1 -= 10
+    if p1 < 1:
+        p1 += 10
+    return p0,p1
 
 def move(tp0,tp1):
     x1 = random.choices([1,2,-1,-2])[0]
     y1 = random.choices([1,2,-1,-2])[0]
-    print('=======',x1,y1)
     tp0 += x1
     tp1 += y1
-    border(tp0,tp1)
-
+    tp0,tp1=border(tp0,tp1)
+    return [tp0,tp0]
 while(Tom.hp and Jerry.count):
-    move(Tom.position[0],Tom.position[1])
+    list2 = []
+    Tom.position = move(Tom.position[0],Tom.position[1])
     print(Tom.position)
     for p in list1:
-        move(p[0], p[1])
-    print(list1)
+        y = move(p[0], p[1])
+        list2.append(y)
+    print(list2)
     Tom.hp -= 1
-    for q in list1:
+    for q in list2:
         if (Tom.position==q):
             print('抓到一只老鼠',q)
-            list1.remove(q)
+            list2.remove(q)
             Jerry.count -= 1
             Tom.hp += 10
             if Tom.hp>100:

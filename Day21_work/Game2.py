@@ -29,34 +29,28 @@ print(list1)
 def wrapper(func):
     def border(p0,p1):
         func(p0,p1)
-        if p0==11:
-            p0 = 1
-        if p0==12:
-            p0 = 2
-        if p0==0:
-            p0 = 10
-        if p0==-1:
-            p0 = 9
-        if p1==11:
-            p1 = 1
-        if p1==12:
-            p1 = 2
-        if p1==0:
-            p1 = 10
-        if p1==-1:
-            p1 = 9
+        if p0>10:
+            p0 -= 10
+        if p0<1:
+            p0 += 10
+        if p1>10:
+            p1 -= 10
+        if p1<1:
+            p1 += 10
     return border
 @wrapper
 def move(p0,p1):
     p0 += random.choices([1,2,-1,-2])[0]
     p1 += random.choices([1,2,-1,-2])[0]
-    return p0,p1
+    return [p0,p1]
 while(Tom.hp and Jerry.count):
-    move(Tom.position[0],Tom.position[1])
+    list2
+    Tom.position = move(Tom.position[0],Tom.position[1])
     print(Tom.position)
     for p in list1:
-        move(p[0], p[1])
-    print(list1)
+        y = move(p[0], p[1])
+        list2.append(y)
+    print(list2)
     Tom.hp -= 1
     for q in list1:
         if (Tom.position==q):

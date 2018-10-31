@@ -28,29 +28,18 @@ for i in range(10):
 print(list1)
 
 def move():
-    global a,b
     x1 = random.choices([1,2,-1,-2])[0]
     y1 = random.choices([1,2,-1,-2])[0]
-    print('=======',x1,y1)
     Tom.position[0] += x1
     Tom.position[1] += y1
-    if Tom.position[0]==11:
-        Tom.position[0] = 1
-    if Tom.position[0]==12:
-        Tom.position[0] = 2
-    if Tom.position[0]==0:
-        Tom.position[0] = 10
-    if Tom.position[0]==-1:
-        Tom.position[0] = 9
-
-    if Tom.position[1]==11:
-        Tom.position[1] = 1
-    if Tom.position[1]==12:
-        Tom.position[1] = 2
-    if Tom.position[1]==0:
-        Tom.position[1] = 10
-    if Tom.position[1]==-1:
-        Tom.position[1] = 9
+    if Tom.position[0]>10:
+        Tom.position[0] -= 10
+    if Tom.position[0]<1:
+        Tom.position[0] += 10
+    if Tom.position[1]>10:
+        Tom.position[1] -= 10
+    if Tom.position[1]<1:
+        Tom.position[1] += 10
     print(Tom.position)
     a1 = random.choices([1, 2, -1, -2])[0]
     b1 = random.choices([1, 2, -1, -2])[0]
